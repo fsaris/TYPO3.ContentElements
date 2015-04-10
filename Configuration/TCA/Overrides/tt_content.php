@@ -98,7 +98,50 @@ $extraContentColumns = array(
 			),
 			'default' => 0
 		)
-	)
+	),
+	'media' => array(
+		'label' => 'LLL:EXT:cms/locallang_ttc.xlf:media',
+		'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig('media', array(
+				'appearance' => array(
+					'createNewRelationLinkTitle' => 'LLL:EXT:cms/locallang_ttc.xlf:media.addFileReference'
+				),
+				// custom configuration for displaying fields in the overlay/reference table
+				// to use the imageoverlayPalette instead of the basicoverlayPalette
+				'foreign_types' => array(
+					'0' => array(
+						'showitem' => '
+							--palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
+							--palette--;;filePalette'
+					),
+					\TYPO3\CMS\Core\Resource\File::FILETYPE_TEXT => array(
+						'showitem' => '
+							--palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
+							--palette--;;filePalette'
+					),
+					\TYPO3\CMS\Core\Resource\File::FILETYPE_IMAGE => array(
+						'showitem' => '
+							--palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
+							--palette--;;filePalette'
+					),
+					\TYPO3\CMS\Core\Resource\File::FILETYPE_AUDIO => array(
+						'showitem' => '
+							--palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;audiooverlayPalette,
+							--palette--;;filePalette'
+					),
+					\TYPO3\CMS\Core\Resource\File::FILETYPE_VIDEO => array(
+						'showitem' => '
+							--palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;videooverlayPalette,
+							--palette--;;filePalette'
+					),
+					\TYPO3\CMS\Core\Resource\File::FILETYPE_APPLICATION => array(
+						'showitem' => '
+							--palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
+							--palette--;;filePalette'
+					)
+				)
+			), $GLOBALS['TYPO3_CONF_VARS']['SYS']['mediafile_ext']
+		)
+	),
 );
 
 // Adding fields to the tt_content table definition in TCA
@@ -338,7 +381,7 @@ $GLOBALS['TCA']['tt_content']['types']['textmedia']['showitem'] = '
 		bodytext;LLL:EXT:cms/locallang_ttc.xlf:bodytext_formlabel;;richtext:rte_transform[flag=rte_enabled|mode=ts_css],
 		rte_enabled;LLL:EXT:cms/locallang_ttc.xlf:rte_enabled_formlabel,
 	--div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.media,
-		image,
+		media,
 		--palette--;LLL:EXT:cms/locallang_ttc.xlf:palette.imagelinks;imagelinks,
 	--div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.appearance,
 		layout;LLL:EXT:cms/locallang_ttc.xlf:layout_formlabel,

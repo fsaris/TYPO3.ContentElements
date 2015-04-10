@@ -193,7 +193,7 @@ class ContentElementController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionC
 	 */
 	public function textmediaAction() {
 		$fileRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Resource\FileRepository::class);
-		$fileObjects = $fileRepository->findByRelation('tt_content', 'image', $this->data['uid']);
+		$fileObjects = $fileRepository->findByRelation('tt_content', 'media', $this->data['uid']);
 
 		$this->data['media'] = $fileObjects;
 

@@ -31,3 +31,10 @@ if(is_array($extensionConfiguration)) {
 		);
 	}
 }
+
+// Add SYS.mediafile_ext when not existing yet
+// Should be moved to eXT:core/Configuration/DefaultConfiguration.php
+if (!isset($GLOBALS['TYPO3_CONF_VARS']['SYS']['mediafile_ext'])) {
+	$GLOBALS['TYPO3_CONF_VARS']['SYS']['mediafile_ext'] =
+		$GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext'] . ',avi,mp4,mp3,wav';
+}
